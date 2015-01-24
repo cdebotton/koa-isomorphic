@@ -1,7 +1,27 @@
-export default function(params) {
+let parent = module.parent;
+try {
+  var ReactRouter = parent.require('react-router');
+}
+catch (err) {
+  throw new Error(
+    'koa-isomorphic requires ReactRouter. Please run `npm install ' +
+    '-S react-router`.'
+  );
+}
+try {
+  var React = parent.require('react');
+}
+catch (err) {
+  throw new Error(
+    'koa-isomorphic requires React. Please run `npm install ' +
+    '-S react`.'
+  );
+}
+
+export default function(routes) {
   const DEV = process.env.NODE_ENV === 'development';
-  let {routes, ReactRouter, React} = params;
   var Routes;
+
   if (! DEV) Routes = require(routes);
 
   return function *(next) {

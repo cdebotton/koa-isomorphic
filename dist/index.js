@@ -1,11 +1,21 @@
 "use strict";
 
-module.exports = function (params) {
+let parent = module.parent;
+try {
+  var ReactRouter = parent.require("react-router");
+} catch (err) {
+  throw new Error("koa-isomorphic requires ReactRouter. Please run `npm install " + "-S react-router`.");
+}
+try {
+  var React = parent.require("react");
+} catch (err) {
+  throw new Error("koa-isomorphic requires React. Please run `npm install " + "-S react`.");
+}
+
+module.exports = function (routes) {
   let DEV = process.env.NODE_ENV === "development";
-  let routes = params.routes;
-  let ReactRouter = params.ReactRouter;
-  let React = params.React;
   var Routes;
+
   if (!DEV) Routes = require(routes);
 
   return function* (next) {
