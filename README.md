@@ -1,17 +1,15 @@
 # koa-isomorphic
 
-A simple, lightweight isomorphic React plugin for koa. Simply `use` it and point it to your instances of React, ReactRouter, and your routes.
+A simple, lightweight isomorphic React plugin for koa. Simply `use` it and point it to your routes. React and ReactRouter must be installed in your module for koa-isomorphic to work.
 
 ```js
+var path = require('path');
 var app = require('koa')();
 var isomorphic = require('koa-isomorphic');
 var port = process.env.NODE_ENV || 3000;
 
-app.use(isomorphic({
-  React: require('react'),
-  ReactRouter: require('react-router'),
-  routes: require('./src/routes')
-}));
+
+app.use(isomorphic(path.join(__dirname, 'src', 'routes')));
 
 app.listen(port, function(err) {
   if (err) throw err;
