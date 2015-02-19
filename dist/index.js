@@ -29,6 +29,8 @@ module.exports = function (_ref) {
 
     var Handler = _ref22[0];
     var state = _ref22[1];
+    state.env = process.env.NODE_ENV || "development";
+
     var markup = React.renderToString(React.createElement(Handler, state));
     var snapshot = yield inject({ alt: alt, markup: markup });
 

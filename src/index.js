@@ -16,6 +16,8 @@ export default ({alt, routes}) => {
 
     let router = createRouter.call(this, ReactRouter, routes);
     let [Handler, state] = yield getState(router);
+    state.env = process.env.NODE_ENV || 'development';
+
     let markup = React.renderToString(<Handler {...state} />);
     let snapshot = yield inject({ alt, markup });
 

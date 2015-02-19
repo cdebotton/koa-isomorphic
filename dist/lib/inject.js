@@ -15,7 +15,7 @@ module.exports = function (_ref) {
   return new Promise(function (resolve, reject) {
     try {
       var $ = cheerio.load(markup);
-      var snapshotData = serialize(alt.takeSnapshot());
+      var snapshotData = serialize(alt.flush());
       var bundle = DEV ? "http://localhost:9000/dist/bundle.js" : "/bundle.min.js";
 
       $("body").append("<script id=\"flux-snapshot\">var snapshot = " + snapshotData + ";</script>");
