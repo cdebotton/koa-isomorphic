@@ -1,14 +1,16 @@
 var gulp = require('gulp');
-var to5 = require('gulp-6to5');
+var babel = require('gulp-babel');
 
-function to5Task() {
+function babelTask() {
   gulp.src('./src/**/*.js')
-    .pipe(to5({blacklist: ['letScoping', 'generators', 'generatorComprehension']}))
+    .pipe(babel({
+      blacklist: ['regenerator']
+    }))
     .pipe(gulp.dest('./dist'));
 };
 
-gulp.task('default', to5Task);
+gulp.task('default', babelTask);
 gulp.task('watch', function() {
-  to5Task();
-  gulp.watch(['./src/**/*.js'], to5Task);
+  babelTask();
+  gulp.watch(['./src/**/*.js'], babelTask);
 });

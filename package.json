@@ -20,7 +20,10 @@
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.8.10",
-    "gulp-6to5": "^2.0.2"
+    "gulp-babel": "^4.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "cheerio": "^0.18.0",
+    "serialize-javascript": "^1.0.0"
+  }
 }
